@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Order {
 
+    private Person person;
     private Course course;
     private List <Sandwich> sandwichList = new ArrayList<Sandwich>();
 
@@ -25,5 +26,13 @@ public class Order {
 
     public void setSandwichList(List<Sandwich> sandwichList) {
         this.sandwichList = sandwichList;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

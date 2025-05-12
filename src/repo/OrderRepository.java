@@ -9,10 +9,13 @@ import java.util.List;
 
 public interface OrderRepository {
 
-    public List <Order> orderList = new ArrayList<Order>();
+    public void addOrder();
+    public void removeOrder() ;
 
-    void printOrder(Order order);
-    void addOrder();
-    void removeOrder();
+    public void addSandwichToOrder(Course course, Sandwich sandwich) ;
+    public void removeSandwichFromOrder(Course course, Sandwich sandwich) ;
+
+    public void printOrder() ;
+
 
 }

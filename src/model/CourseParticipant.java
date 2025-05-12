@@ -6,13 +6,13 @@ public class CourseParticipant extends Person {
     private static int numberOfSandWiches = 0; //max 2
     private Course course;
 
-    public CourseParticipant() {
+    public CourseParticipant(String firstName, String lastName) {
 
+        super(firstName,lastName);
     }
 
 
-
-    public void orderSandwich(Sandwich sandWich) {
+    public void orderSandwich(Course course, Sandwich sandWich) {
 
     }
 

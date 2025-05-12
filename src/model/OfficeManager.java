@@ -8,13 +8,13 @@ public class OfficeManager extends Person {
 
     OrderRepository repo = new FileOrderRepository();
 
-    public OfficeManager() {
+    public OfficeManager(String firstName, String lastName) {
 
+        super (firstName,lastName);
     }
 
     public void createOrder() {
-
-    }
+           }
 
     public void removeOrder() {
 
