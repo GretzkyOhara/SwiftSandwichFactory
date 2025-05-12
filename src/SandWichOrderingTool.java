@@ -1,17 +1,18 @@
 import model.*;
 
+import java.io.IOException;
+
 public class SandWichOrderingTool {
 
     public static void main (String [] args) {
 
-//Sandwich = load hans input
+        OrderSystem orderSystem = new OrderSystem();
 
-        CourseParticipant student1 = new CourseParticipant("Bert ", "Christiaens");
-
-        Sandwich sw1 = new Sandwich("Hesp",false,false);
+        Person p1 = new Person ("John", "Doe");
         Course c1 = new Course("Java");
+        Sandwich sw1 = new Sandwich("Hesp",false,false);
 
-        student1.orderSandwich(c1,sw1);
-
+        Order order = new Order(p1,c1,sw1);
+        orderSystem.orderSandwich(order);
     }
 }

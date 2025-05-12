@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Sandwich {
 
     private String title;
@@ -40,4 +42,6 @@ public class Sandwich {
     public void setTypeOfBread(boolean typeOfBread) {
         this.typeOfBread = typeOfBread;
     }
+
+
 }

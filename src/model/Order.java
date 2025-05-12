@@ -2,14 +2,21 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
 
     private Person person;
     private Course course;
-    private List <Sandwich> sandwichList = new ArrayList<Sandwich>();
+    private Sandwich sandwich = new Sandwich ();
 
     public Order() {
+    }
+
+    public Order(Person person, Course course, Sandwich sandwich) {
+        this.person = person;
+        this.course = course;
+        this.sandwich = sandwich;
     }
 
     public Course getCourse() {
@@ -20,12 +27,12 @@ public class Order {
         this.course = course;
     }
 
-    public List<Sandwich> getSandwichList() {
-        return sandwichList;
+    public Sandwich getSandwich() {
+        return sandwich;
     }
 
-    public void setSandwichList(List<Sandwich> sandwichList) {
-        this.sandwichList = sandwichList;
+    public void setSandwich(Sandwich sandwich) {
+        this.sandwich = sandwich;
     }
 
     public Person getPerson() {
@@ -35,4 +42,8 @@ public class Order {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+
+
+
 }
