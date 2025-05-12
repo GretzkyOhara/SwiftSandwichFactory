@@ -1,16 +1,15 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Course {
 
     private String title;
 
-    public Course () {
-
-    }
 
     public Course(String title) {
-        this.title = title;
     }
+
 
     public String getTitle() {
         return title;

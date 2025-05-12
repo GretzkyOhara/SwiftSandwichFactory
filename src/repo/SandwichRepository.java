@@ -8,5 +8,5 @@ import java.util.List;
 public interface SandwichRepository {
 
     List<Sandwich> findAllSandwiches();
-
+    void addSandwich(Sandwich s);
 }
