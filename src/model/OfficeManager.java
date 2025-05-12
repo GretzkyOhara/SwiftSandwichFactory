@@ -1,8 +1,35 @@
 package model;
 
+import repo.FileOrderRepository;
+import repo.OrderRepository;
+
+
 public class OfficeManager extends Person {
 
-   public OfficeManager () {
+    OrderRepository repo = new FileOrderRepository();
 
-   }
+    public OfficeManager() {
+
+    }
+
+    public void createOrder() {
+
+    }
+
+    public void removeOrder() {
+
+    }
+
+    public void addSandwichToOrder(Course course, Sandwich sandwich) {
+
+    }
+
+    public void removeSandwichFromOrder(Course course, Sandwich sandwich) {
+
+    }
+
+    public void printOrder() {}
+
+
+
 }

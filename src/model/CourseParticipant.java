@@ -3,7 +3,7 @@ package model;
 public class CourseParticipant extends Person {
 
 
-    private static int numberOfSandWiches = 0;
+    private static int numberOfSandWiches = 0; //max 2
     private Course course;
 
     public CourseParticipant() {

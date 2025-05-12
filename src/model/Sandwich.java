@@ -16,4 +16,28 @@ public class Sandwich {
         this.vegetables = vegetables;
         this.typeOfBread = typeOfBread;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isVegetables() {
+        return vegetables;
+    }
+
+    public void setVegetables(boolean vegetables) {
+        this.vegetables = vegetables;
+    }
+
+    public boolean isTypeOfBread() {
+        return typeOfBread;
+    }
+
+    public void setTypeOfBread(boolean typeOfBread) {
+        this.typeOfBread = typeOfBread;
+    }
 }

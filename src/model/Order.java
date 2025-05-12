@@ -6,7 +6,7 @@ import java.util.List;
 public class Order {
 
     private Course course;
-    private List <Sandwich> sandwichList = new ArrayList<>(Sandwich);
+    private List <Sandwich> sandwichList = new ArrayList<Sandwich>();
 
     public Order() {
     }
