@@ -10,7 +10,7 @@ public class OrderSystem {
 
     OrderRepository repo = new FileOrderRepository();
 
-    public OrderSystem(){
+    public OrderSystem() {
     }
 
     public void orderSandwich(Order order) {
@@ -18,7 +18,9 @@ public class OrderSystem {
 
     }
 
-    public void printOrder(Order order) {
+    public void printOrder() throws IOException {
+
+        repo.printOrder();
 
     }
 

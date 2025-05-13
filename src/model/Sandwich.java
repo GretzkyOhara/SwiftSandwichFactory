@@ -44,4 +44,12 @@ public class Sandwich {
     }
 
 
+    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "title='" + title + '\'' +
+                ", vegetables=" + vegetables +
+                ", typeOfBread=" + typeOfBread +
+                '}';
+    }
 }
