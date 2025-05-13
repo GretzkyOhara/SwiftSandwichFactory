@@ -8,23 +8,33 @@ public class Sandwich {
     private String title;
     private boolean vegetables;
     private boolean typeOfBread;
-
+    private String sandwichType;
     public Sandwich() {
 
 
     }
 
-    public Sandwich( String title, boolean vegetables, boolean typeOfBread) {
+    public String getSandwichType() {
+        return sandwichType;
+    }
+
+    public void setSandwichType(String sandwichType) {
+        this.sandwichType = sandwichType;
+    }
+
+    public Sandwich(String title, boolean vegetables, boolean typeOfBread, String sandwichType) {
         this.title = title;
         this.vegetables = vegetables;
         this.typeOfBread = typeOfBread;
+        this.sandwichType = sandwichType;
     }
 
-    public Sandwich(Integer num, String title, boolean vegetables, boolean typeOfBread) {
+    public Sandwich(Integer num, String title, boolean vegetables, boolean typeOfBread, String sandwichType) {
         this.num = num;
         this.title = title;
         this.vegetables = vegetables;
         this.typeOfBread = typeOfBread;
+        this.sandwichType = sandwichType;
     }
 
     public Integer getNum() {        return num;    }

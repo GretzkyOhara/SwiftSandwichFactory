@@ -89,7 +89,7 @@ public class GUI_Test {
             String nr = scanner.nextLine();
             Integer nrSelected = 0;
             String nameSelected = "";
-            Boolean extraVegies = false;
+            Boolean extraVeggies = false;
             Integer breadSelected = 0;
             Boolean breadType  = false;
 
@@ -105,7 +105,7 @@ public class GUI_Test {
                             System.out.print("Would you like vegetables with your sandwich? (Y/N) : ");
                             String resYN = scanner.nextLine();
                             if(resYN.toUpperCase() == "Y"){
-                                extraVegies = true;
+                                extraVeggies = true;
                             }
                         }
                         System.out.println("Which type of bread would you like? : ");
@@ -121,7 +121,7 @@ public class GUI_Test {
 
                             Person p1 = new Person(aName);
                             Course c1 = new Course(aCourseName);
-                            Sandwich sw1 = new Sandwich(nameSelected, extraVegies, breadType);
+                            Sandwich sw1 = new Sandwich(nameSelected, extraVeggies, breadType);
 
                             Order order = new Order(p1, c1, sw1);
 
@@ -140,22 +140,6 @@ public class GUI_Test {
             else{
                 System.out.println("ERROR");
             }
-
-
-
-
-//            try{
-//                Integer.parseInt(nr);
-//
-//            } catch (Exception e) {
-//                // Handle exceptions
-//                e.printStackTrace();
-//                System.err.println("Value is not numeric!! (" + e.getMessage() + ")");
-//            }
-
-
-
-
 
 
 

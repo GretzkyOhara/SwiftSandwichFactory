@@ -93,6 +93,7 @@ public class SandWichOrderingTool {
             for (Sandwich s : sr.getSandwiches()) {
                 if (nrSelected == s.getNum()) {
                     nameSelected = s.getTitle();
+                    String sType = s.getSandwichType();
                     //System.out.println("FOUND " + s.getTitle());
                     if (s.isVegetables() == true) {
                         System.out.print("Would you like vegetables with your sandwich? (Y/N) : ");
@@ -121,7 +122,7 @@ public class SandWichOrderingTool {
                     Person p1 = new Person(aName);
                     Course c1 = new Course(aCourseName);
 
-                    Sandwich sw1 = new Sandwich(nameSelected, extraVegies, breadType);
+                    Sandwich sw1 = new Sandwich(nameSelected, extraVegies, breadType,sType);
                     Order order = new Order(p1, c1, sw1);
 
                     OrderSystem os = new OrderSystem();
