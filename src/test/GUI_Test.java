@@ -2,8 +2,7 @@
 
 package test;
 
-import model.Course;
-import model.Sandwich;
+import model.*;
 import org.apache.commons.lang3.StringUtils;
 import repo.CourseRepository;
 import repo.FileCourseRepository;
@@ -119,13 +118,17 @@ public class GUI_Test {
 
                             System.out.println("PASS THE ORDER TO BERT");
 
-                            //Values:
-                            //------------------------
-                            //aName
-                            //aCourseName
-                            //nameSelected
-                            //extraVegies
-                            //breadType
+
+                            Person p1 = new Person(aName);
+                            Course c1 = new Course(aCourseName);
+                            Sandwich sw1 = new Sandwich(nameSelected, extraVegies, breadType);
+
+                            Order order = new Order(p1, c1, sw1);
+
+                            OrderSystem os = new OrderSystem();
+                            os.orderSandwich(order);
+
+
 
 
                         }
