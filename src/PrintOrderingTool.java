@@ -1,4 +1,4 @@
-import model.*;
+import controller.OrderSystem;
 
 import java.io.IOException;
 

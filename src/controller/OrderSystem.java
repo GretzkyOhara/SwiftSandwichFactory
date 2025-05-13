@@ -1,5 +1,6 @@
-package model;
+package controller;
 
+import model.Order;
 import repo.FileOrderRepository;
 import repo.OrderRepository;
 
