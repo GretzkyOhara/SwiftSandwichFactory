@@ -52,13 +52,9 @@ public class FileOrderRepository implements OrderRepository {
         }
 
         if (counter < 2) {
-            Path path = Paths.get("C://temp//javacourses//orders.csv");
-            try (
-                    PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND))) {
-                writer.println(order.getCourse().getTitle() + "," + order.getPerson().getName() + "," + order.getSandwich().getTitle() + "," + order.getSandwich().isVegetables() + "," + order.getSandwich().isTypeOfBread() + ","+order.getSandwich().getSandwichType());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            writeOrderToCSV(order);
+
         } else {
            System.out.println(order.getPerson().getName() + " already ordered 2 sandwiches, not processing Order");
         }
@@ -66,6 +62,9 @@ public class FileOrderRepository implements OrderRepository {
 
     @Override
     public void removeOrder(Order order) {
+
+        //TODO  1. remove order from Orderlist array
+        //TODO  2. write each Order from updated OrderList array to CSV (use private method writeOrderToCSV()
 
     }
 
@@ -78,13 +77,13 @@ public class FileOrderRepository implements OrderRepository {
 
         for (Order o : orderList) {
 
-            System.out.printf("%1$-100s\n", "Naam:" + o.getPerson().getName());
-            System.out.printf("%1$-100s\n", "Training:" + o.getCourse().getTitle());
-            System.out.printf("%1$-100s\n", "");
+            System.out.printf("%1$-150s\n", "Naam:" + o.getPerson().getName());
+            System.out.printf("%1$-150s\n", "Training:" + o.getCourse().getTitle());
+            System.out.printf("%1$-150s\n", "");
 
-            System.out.printf("%1$-50s%2$-25s%3$-20s\n", o.getSandwich().getSandwichType(), "Groenten Ja/Nee", "Grijs/Wit");
-            System.out.printf("%1$-50s%2$-25s%3$-20s\n", o.getSandwich().getTitle(), (o.getSandwich().isVegetables() ? "Ja" : "Nee"), (o.getSandwich().isTypeOfBread() ? "Grijs" : "Wit"));
-            System.out.printf("%1$-100s\n", "");
+            System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getSandwichType(), "Groenten Ja/Nee", "Grijs/Wit");
+            System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getTitle(), (o.getSandwich().isVegetables() ? "Ja" : "Nee"), (o.getSandwich().isTypeOfBread() ? "Grijs" : "Wit"));
+            System.out.printf("%1$-150s\n", "");
         }
 
 
@@ -102,4 +101,15 @@ public class FileOrderRepository implements OrderRepository {
         return theResult;
     }
 
+    private void writeOrderToCSV(Order o) {
+
+        Path path = Paths.get("C://temp//javacourses//orders.csv");
+        try (
+                PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND))) {
+            writer.println(o.getCourse().getTitle() + "," + o.getPerson().getName() + "," + o.getSandwich().getTitle() + "," + o.getSandwich().isVegetables() + "," + o.getSandwich().isTypeOfBread() + ","+o.getSandwich().getSandwichType());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
