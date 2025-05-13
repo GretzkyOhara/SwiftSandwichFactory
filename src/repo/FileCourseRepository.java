@@ -42,7 +42,7 @@ public class FileCourseRepository implements CourseRepository {
         double price = Double.parseDouble(vals[2]);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/M/yyyy");
         LocalDate released = LocalDate.parse(vals[3],dtf);
-        System.out.println(title);
+        //System.out.println(title);
         Course c = new Course(title);
         return c;
 

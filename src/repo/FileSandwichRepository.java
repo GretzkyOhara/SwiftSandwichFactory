@@ -18,4 +18,16 @@ public class FileSandwichRepository implements SandwichRepository{
     public List<Sandwich> findAllSandwiches() {
         return List.of();
     }
+
+    static String getSandwichNameByNumber(Integer nr){
+        return "TEST";
+    }
+
+    public List<Sandwich> getSandwiches() {
+        return sandwiches;
+    }
+
+    public void setSandwiches(List<Sandwich> sandwiches) {
+        this.sandwiches = sandwiches;
+    }
 }

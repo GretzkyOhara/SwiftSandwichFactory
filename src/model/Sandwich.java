@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Sandwich {
 
+    private Integer num;
     private String title;
     private boolean vegetables;
     private boolean typeOfBread;
@@ -13,11 +14,22 @@ public class Sandwich {
 
     }
 
-    public Sandwich(String title, boolean vegetables, boolean typeOfBread) {
+    public Sandwich( String title, boolean vegetables, boolean typeOfBread) {
         this.title = title;
         this.vegetables = vegetables;
         this.typeOfBread = typeOfBread;
     }
+
+    public Sandwich(Integer num, String title, boolean vegetables, boolean typeOfBread) {
+        this.num = num;
+        this.title = title;
+        this.vegetables = vegetables;
+        this.typeOfBread = typeOfBread;
+    }
+
+    public Integer getNum() {        return num;    }
+
+    public void setNum(Integer num) {        this.num = num;    }
 
     public String getTitle() {
         return title;
