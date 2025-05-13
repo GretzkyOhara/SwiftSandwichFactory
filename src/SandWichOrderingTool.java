@@ -66,8 +66,9 @@ public class SandWichOrderingTool {
                 String[] vals2 = s2.split(";");
                 String t2 = (vals2[0]);
                 Boolean b1 = Integer.parseInt(vals2[1]) > 0;
+                String sT = vals2[2];
 
-                Sandwich c2 = new Sandwich(cnt, t2, b1, false);
+                Sandwich c2 = new Sandwich(cnt, t2, b1, false, sT);
                 sr.addSandwich(c2);
 
                 System.out.println(cnt.toString() + ". " + t2);
@@ -98,7 +99,7 @@ public class SandWichOrderingTool {
                     if (s.isVegetables() == true) {
                         System.out.print("Would you like vegetables with your sandwich? (Y/N) : ");
                         String resYN = scanner.nextLine();
-                        if (resYN.toUpperCase() == "Y") {
+                        if (resYN.toUpperCase().equals("Y")) {
                             extraVegies = true;
                         }
                     }
@@ -109,11 +110,6 @@ public class SandWichOrderingTool {
                     if (StringUtils.isNumeric(breadTypeSelected)) {
                         breadSelected = Integer.parseInt(breadTypeSelected);
                         breadType = (breadSelected > 1);
-
-                        System.out.println("PASS THE ORDER TO BERT");
-
-
-
 
 
                     }
@@ -126,7 +122,7 @@ public class SandWichOrderingTool {
                     Order order = new Order(p1, c1, sw1);
 
                     OrderSystem os = new OrderSystem();
-                    os.orderSandwich(order);
+                    os.addOrder(order);
 
 
                 }

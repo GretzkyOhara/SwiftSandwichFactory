@@ -71,10 +71,10 @@ public class GUI_Test {
                 for (String s2 : lines2){
                     cnt++;
                     String[] vals2 = s2.split(";");
-                    String t2 = (vals2[0]);
+                    String t2 = vals2[0];
                     Boolean b1 = Integer.parseInt(vals2[1]) >0;
-
-                    Sandwich c2 = new Sandwich(cnt,t2,b1,false);
+                    String sT = vals2[2];
+                    Sandwich c2 = new Sandwich( cnt,t2,b1,false,sT);
                     sr.addSandwich(c2);
 
                     System.out.println(cnt.toString() + ". " + t2);
@@ -87,8 +87,6 @@ public class GUI_Test {
 
             System.out.print("Nr : ");
             String nr = scanner.nextLine();
-            Integer nrSelected = 0;
-            String nameSelected = "";
             Boolean extraVeggies = false;
             Integer breadSelected = 0;
             Boolean breadType  = false;
@@ -96,10 +94,11 @@ public class GUI_Test {
 
             // check if nr exists and if you can add veggies
             if (StringUtils.isNumeric(nr)) {
-                nrSelected = Integer.parseInt(nr);
+                Integer nrSelected = Integer.parseInt(nr);
                 for (Sandwich s : sr.getSandwiches()) {
                     if (nrSelected == s.getNum()){
-                        nameSelected = s.getTitle();
+                        String nameSelected = s.getTitle();
+                        String sType = s.getSandwichType();
                         //System.out.println("FOUND " + s.getTitle());
                         if (s.isVegetables() == true) {
                             System.out.print("Would you like vegetables with your sandwich? (Y/N) : ");
@@ -116,17 +115,14 @@ public class GUI_Test {
                             breadSelected =Integer.parseInt(breadTypeSelected);
                             breadType = (breadSelected >1);
 
-                            System.out.println("PASS THE ORDER TO BERT");
-
-
                             Person p1 = new Person(aName);
                             Course c1 = new Course(aCourseName);
-                            Sandwich sw1 = new Sandwich(nameSelected, extraVeggies, breadType);
+                            Sandwich sw1 = new Sandwich(nameSelected, extraVeggies, breadType,sType);
 
                             Order order = new Order(p1, c1, sw1);
 
                             OrderSystem os = new OrderSystem();
-                            os.orderSandwich(order);
+                            os.addOrder(order);
 
 
 

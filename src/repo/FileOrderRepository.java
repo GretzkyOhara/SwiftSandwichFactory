@@ -42,49 +42,53 @@ public class FileOrderRepository implements OrderRepository {
     public void addOrder(Order order) {
 
         //1. check if person has more then 2 orders already
-      //  int counter = 0;
-    //    for (Order o : orderList) {
+        int counter = 0;
+        for (Order o : orderList) {
 
-     //       if (o.getPerson().getName().equals(order.getPerson().getName())) {
-               // counter++;
-      //      }
+            if (o.getPerson().getName().equals(order.getPerson().getName())) {
+                counter++;
+            }
 
-       // }
+        }
 
-      //  if (counter <= 2) {
+        if (counter < 2) {
             Path path = Paths.get("C://temp//javacourses//orders.csv");
             try (
                     PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND))) {
-                writer.println(order.getCourse().getTitle() + "," + order.getPerson().getName() + "," + order.getSandwich().getTitle() + "," + order.getSandwich().isVegetables() + "," + order.getSandwich().isTypeOfBread());
+                writer.println(order.getCourse().getTitle() + "," + order.getPerson().getName() + "," + order.getSandwich().getTitle() + "," + order.getSandwich().isVegetables() + "," + order.getSandwich().isTypeOfBread() + ","+order.getSandwich().getSandwichType());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-       // } else {
-       //     System.out.println(order.getPerson().getName() + " already ordered 2 sandwiches, not processing Order");
-       // }
+        } else {
+           System.out.println(order.getPerson().getName() + " already ordered 2 sandwiches, not processing Order");
+        }
+    }
+
+    @Override
+    public void removeOrder(Order order) {
+
     }
 
     @Override
     public void printOrder() throws IOException {
 
 
-        System.out.printf("%1$-70s\n", "Broodjes (Pinky's)");
-        System.out.printf("%1$-70s\n", "");
+        System.out.printf("%1$-100s\n", "Broodjes (Pinky's)");
+        System.out.printf("%1$-100s\n", "");
 
         for (Order o : orderList) {
 
-            System.out.printf("%1$-70s\n", "Naam:" + o.getPerson().getName());
-            System.out.printf("%1$-70s\n", "Training:" + o.getCourse().getTitle());
-            System.out.printf("%1$-70s\n", "");
+            System.out.printf("%1$-100s\n", "Naam:" + o.getPerson().getName());
+            System.out.printf("%1$-100s\n", "Training:" + o.getCourse().getTitle());
+            System.out.printf("%1$-100s\n", "");
 
-            System.out.printf("%1$-25s%2$-25s%3$-20s\n", "Naam", "Groenten Ja/Nee", "Grijs/Wit");
-            System.out.printf("%1$-25s%2$-25s%3$-20s\n", o.getSandwich().getTitle(), (o.getSandwich().isVegetables() ? "Ja" : "Nee"), (o.getSandwich().isTypeOfBread() ? "Grijs" : "Wit"));
-            System.out.printf("%1$-70s\n", "");
+            System.out.printf("%1$-50s%2$-25s%3$-20s\n", o.getSandwich().getSandwichType(), "Groenten Ja/Nee", "Grijs/Wit");
+            System.out.printf("%1$-50s%2$-25s%3$-20s\n", o.getSandwich().getTitle(), (o.getSandwich().isVegetables() ? "Ja" : "Nee"), (o.getSandwich().isTypeOfBread() ? "Grijs" : "Wit"));
+            System.out.printf("%1$-100s\n", "");
         }
 
 
     }
-
 
     private Order parseOrder(String s) {
 
@@ -93,25 +97,9 @@ public class FileOrderRepository implements OrderRepository {
 
         theResult.setCourse(new Course(tokens[0]));
         theResult.setPerson(new Person(tokens[1]));
-        theResult.setSandwich(new Sandwich(tokens[2], Boolean.parseBoolean(tokens[3]), Boolean.parseBoolean(tokens[4])));
+        theResult.setSandwich(new Sandwich(tokens[2], Boolean.parseBoolean(tokens[3]), Boolean.parseBoolean(tokens[4]),tokens[5]));
 
         return theResult;
     }
 
-    private String formatOrder(Order o) {
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(o.getCourse().getTitle())
-                .append(",")
-                .append(o.getPerson().getName())
-                .append(",")
-                .append(o.getSandwich().getTitle())
-                .append(",")
-                .append(Boolean.valueOf(o.getSandwich().isVegetables()))
-                .append(",")
-                .append(Boolean.valueOf(o.getSandwich().isTypeOfBread()));
-
-        return sb.toString();
-    }
 }
