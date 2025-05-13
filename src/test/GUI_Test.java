@@ -2,6 +2,7 @@ package test;
 
 import model.Course;
 import model.Sandwich;
+import org.apache.commons.lang3.StringUtils;
 import repo.CourseRepository;
 import repo.FileCourseRepository;
 import repo.FileSandwichRepository;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class GUI_Test {
 
         public static void main(String[] args) throws IOException {
@@ -22,7 +24,7 @@ public class GUI_Test {
             CourseRepository cr = null;
             cr = new FileCourseRepository();
 
-            System.out.println("----------------- LOADING COURSES ---------------");
+           // System.out.println("----------------- LOADING COURSES ---------------");
             Path filePath = Paths.get("/temp/javacourses/courses.csv");
             try {
                 // Read all lines into a List
@@ -34,7 +36,7 @@ public class GUI_Test {
                     Course c1 = new Course(t1);
                     cr.addCourse(c1);
 
-                    System.out.println(t1);
+                   // System.out.println(t1);
                 }
             } catch (Exception e) {
                 // Handle exceptions
@@ -42,8 +44,8 @@ public class GUI_Test {
                 System.err.println("An error occurred while reading the file: " + e.getMessage());
             }
 
-            SandwichRepository sr = null;
-            sr = new FileSandwichRepository();
+            //SandwichRepository sr = null;
+            FileSandwichRepository sr = new FileSandwichRepository();
             Integer cnt = 0;
 
 
@@ -71,7 +73,7 @@ public class GUI_Test {
                     String t2 = (vals2[0]);
                     Boolean b1 = Integer.parseInt(vals2[1]) >0;
 
-                    Sandwich c2 = new Sandwich(t2,b1,false);
+                    Sandwich c2 = new Sandwich(cnt,t2,b1,false);
                     sr.addSandwich(c2);
 
                     System.out.println(cnt.toString() + ". " + t2);
@@ -84,6 +86,74 @@ public class GUI_Test {
 
             System.out.print("Nr : ");
             String nr = scanner.nextLine();
+            Integer nrSelected = 0;
+            String nameSelected = "";
+            Boolean extraVegies = false;
+            Integer breadSelected = 0;
+            Boolean breadType  = false;
+
+
+            // check if nr exists and if you can add veggies
+            if (StringUtils.isNumeric(nr)) {
+                nrSelected = Integer.parseInt(nr);
+                for (Sandwich s : sr.getSandwiches()) {
+                    if (nrSelected == s.getNum()){
+                        nameSelected = s.getTitle();
+                        //System.out.println("FOUND " + s.getTitle());
+                        if (s.isVegetables() == true) {
+                            System.out.print("Would you like vegetables with your sandwich? (Y/N) : ");
+                            String resYN = scanner.nextLine();
+                            if(resYN.toUpperCase() == "Y"){
+                                extraVegies = true;
+                            }
+                        }
+                        System.out.println("Which type of bread would you like? : ");
+                        System.out.println("     1 - White");
+                        System.out.println("     2 - Grey");
+                        String breadTypeSelected = scanner.nextLine();
+                        if (StringUtils.isNumeric(breadTypeSelected)) {
+                            breadSelected =Integer.parseInt(breadTypeSelected);
+                            breadType = (breadSelected >1);
+
+                            System.out.println("PASS THE ORDER TO BERT");
+
+                            //Values:
+                            //------------------------
+                            //aName
+                            //aCourseName
+                            //nameSelected
+                            //extraVegies
+                            //breadType
+
+
+                        }
+
+
+                    }
+                }
+            }
+            else{
+                System.out.println("ERROR");
+            }
+
+
+
+
+//            try{
+//                Integer.parseInt(nr);
+//
+//            } catch (Exception e) {
+//                // Handle exceptions
+//                e.printStackTrace();
+//                System.err.println("Value is not numeric!! (" + e.getMessage() + ")");
+//            }
+
+
+
+
+
+
+
 
         }
 }
