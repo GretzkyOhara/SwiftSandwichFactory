@@ -18,7 +18,7 @@ public class SandWichOrderingTool {
 
 
 
-        // System.out.println("----------------- LOADING COURSES ---------------");
+        // ----------------- LOADING COURSES ---------------
         Path filePath = Paths.get("/temp/javacourses/courses.csv");
 
         try {
@@ -72,7 +72,7 @@ public class SandWichOrderingTool {
         System.out.println("        " + (bResLanguage ? "Kies het overeenstemmende nummer voor de sandwich" : "Choisisez le numéro qui corresponds au sandwich"  + " : "));
         System.out.println("-------------------------------------------------------------------------------------");
 
-        Path filePath2 = Paths.get("/temp/javacourses/" + (bResLanguage ? "sandwiches.csv" : "sandwiches_FR.csv" ));
+        Path filePath2 = Paths.get("/temp/javacourses/sandwiches_nl-fr.csv");
         try {
             // Read all lines into a List
             List<String> lines2 = Files.readAllLines(filePath2);
@@ -81,12 +81,14 @@ public class SandWichOrderingTool {
                 cnt++;
                 String[] vals2 = s2.split(";");
                 String t2 = vals2[0];
-                Boolean b1 = Integer.parseInt(vals2[1]) >0;
-                String sT = vals2[2];
+                String t2_fr = vals2[1];
+                Boolean b1 = Integer.parseInt(vals2[2]) >0;
+                String sT = vals2[3];
+                String sT_fr = vals2[4];
                 Sandwich c2 = new Sandwich( cnt,t2,b1,false,sT);
                 sr.addSandwich(c2);
 
-                System.out.println(cnt.toString() + ". " + t2);
+                System.out.println(cnt.toString() + ". " + (bResLanguage ? t2 : t2_fr) + "  (" + (bResLanguage ? sT : sT_fr) + ")");
             }
         } catch (Exception e) {
             // Handle exceptions
@@ -100,7 +102,7 @@ public class SandWichOrderingTool {
         Integer breadSelected = 0;
         Boolean breadType  = false;
         String resYN = "";
-        String orderComments = "";
+        String orderComments = "none";
 
         // check if nr exists and if you can add veggies
         if (StringUtils.isNumeric(nr)) {
@@ -112,7 +114,7 @@ public class SandWichOrderingTool {
                     //System.out.println("FOUND " + s.getTitle());
                     if (s.isVegetables() == true) {
                         //System.out.print("Would you like vegetables with your sandwich? (Y/N) : ");
-                        System.out.print((bResLanguage ? "Wenst u goeten bij uw sandwich? (J/N)" : "Desirez vous des crudités avec votre sandwich? (O/N)")+ " : ");
+                        System.out.print((bResLanguage ? "Wenst u groenten bij uw sandwich? (J/N)" : "Desirez vous des crudités avec votre sandwich? (O/N)")+ " : ");
                         resYN = scanner.nextLine();
                         if(resYN.toUpperCase().equals(bResLanguage ? "J" : "O")){
                             extraVeggies = true;
@@ -129,7 +131,7 @@ public class SandWichOrderingTool {
 
                     }
 
-                    System.out.print(bResLanguage ? "Hebt u nog opmerkingen? (J/N) " : "Avez vous encore des remarues? (O/N) "  + " : ");
+                    System.out.print(bResLanguage ? "Hebt u nog opmerkingen? (J/N) " : "Avez vous encore des remarques? (O/N) "  + " : ");
                     resYN = scanner.nextLine();
                     if(resYN.toUpperCase().equals(bResLanguage ? "J" : "O")){
                         System.out.println((bResLanguage ? "Opmerkingen" : "Remarques") + " : ");
