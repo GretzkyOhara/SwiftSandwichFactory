@@ -96,7 +96,7 @@ public class SandWichOrderingTool {
             System.err.println((bResLanguage ? "!!! Er is een fout opgetreden !!!" : "!!! Une erreur c'est produite !!!") + e.getMessage());
         }
 
-        System.out.print((bResLanguage ? "Nummer : " : "Numéro")+ " : ");
+        System.out.print((bResLanguage ? "Nummer" : "Numéro")+ " : ");
         String nr = scanner.nextLine();
         Boolean extraVeggies = false;
         Integer breadSelected = 0;
