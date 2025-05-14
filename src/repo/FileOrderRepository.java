@@ -61,10 +61,13 @@ public class FileOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void removeOrder(Order order) {
+    public void removeOrder(String aPersonName, String aSandWichName) throws IOException {
 
-        //TODO  1. remove order from Orderlist array
-        //TODO  2. write each Order from updated OrderList array to CSV (use private method writeOrderToCSV()
+
+        Files.delete(Paths.get("C://temp//javacourses//orders.csv"));
+
+        List <Order> filteredList = orderList.stream().filter(o -> !(o.getPerson().getName().equals(aPersonName) && o.getSandwich().getTitle().equals(aSandWichName))).toList();
+        filteredList.stream().forEach(o -> writeOrderToCSV(o));
 
     }
 

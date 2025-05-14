@@ -19,8 +19,8 @@ public class OrderSystem {
 
     }
 
-    public void removeOrder(Order order) {
-        repo.removeOrder(order);
+    public void removeOrder(String aPersonName, String aSandwichName) throws IOException {
+        repo.removeOrder(aPersonName, aSandwichName);
 
     }
 
