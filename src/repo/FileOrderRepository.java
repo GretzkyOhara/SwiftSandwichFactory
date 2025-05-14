@@ -63,50 +63,57 @@ public class FileOrderRepository implements OrderRepository {
     @Override
     public void removeOrder(String aPersonName, String aSandWichName) throws IOException {
 
+        if(!orderList.isEmpty()) {
 
-        Files.delete(Paths.get("C://temp//javacourses//orders.csv"));
-
-        List <Order> filteredList = orderList.stream().filter(o -> !(o.getPerson().getName().equals(aPersonName) && o.getSandwich().getTitle().equals(aSandWichName))).toList();
-        filteredList.stream().forEach(o -> writeOrderToCSV(o));
-
+            Files.delete(Paths.get("C://temp//javacourses//orders.csv"));
+            List<Order> filteredList = orderList.stream().filter(o -> !(o.getPerson().getName().equals(aPersonName) && o.getSandwich().getTitle().equals(aSandWichName))).toList();
+            filteredList.stream().forEach(o -> writeOrderToCSV(o));
+        }
+        else {
+            System.out.println("currently no orders in database, nothing to be removed");
+        }
     }
 
     @Override
     public void printOrder() throws IOException {
 
+        if(!orderList.isEmpty()) {
 
-        StringBuilder dashes_underscore = new StringBuilder("");
-        for (int i = 1; i <= 150; i++) {
-            dashes_underscore.append("-");
+            StringBuilder dashes_underscore = new StringBuilder("");
+            for (int i = 1; i <= 150; i++) {
+                dashes_underscore.append("-");
+            }
+
+            StringBuilder dashes_star = new StringBuilder("");
+            for (int i = 1; i <= 150; i++) {
+                dashes_star.append("*");
+            }
+
+
+            System.out.printf("%1$-100s\n", "Broodjes (Pinky's)");
+            System.out.printf("%1$-100s\n", dashes_star.toString());
+            System.out.printf("%1$-100s\n", "");
+
+            for (Order o : orderList) {
+
+                System.out.printf("%1$-100s\n", dashes_underscore.toString());
+                System.out.printf("%1$-150s\n", "Naam:" + o.getPerson().getName());
+                System.out.printf("%1$-150s\n", "Training:" + o.getCourse().getTitle());
+                System.out.printf("%1$-150s\n", "");
+
+                System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getSandwichType(), "Groenten Ja/Nee", "Grijs/Wit");
+                System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getTitle(), (o.getSandwich().isVegetables() ? "Ja" : "Nee"), (o.getSandwich().isTypeOfBread() ? "Grijs" : "Wit"));
+                System.out.printf("%1$-150s\n", "");
+                System.out.printf("%1$-150s\n", "");
+                System.out.printf("%1$-150s\n", "Opmerkingen :" + (o.getOrderComments().equalsIgnoreCase("none") ? "" : o.getOrderComments()));
+                System.out.printf("%1$-150s\n", "");
+
+            }
+
+        } else {
+            System.out.println("currently no orders in database, nothing to be printed");
+
         }
-
-        StringBuilder dashes_star = new StringBuilder("");
-        for (int i = 1; i <= 150; i++) {
-            dashes_star.append("*");
-        }
-
-
-        System.out.printf("%1$-100s\n", "Broodjes (Pinky's)");
-        System.out.printf("%1$-100s\n", dashes_star.toString());
-        System.out.printf("%1$-100s\n", "");
-
-        for (Order o : orderList) {
-
-            System.out.printf("%1$-100s\n", dashes_underscore.toString());
-            System.out.printf("%1$-150s\n", "Naam:" + o.getPerson().getName());
-            System.out.printf("%1$-150s\n", "Training:" + o.getCourse().getTitle());
-            System.out.printf("%1$-150s\n", "");
-
-            System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getSandwichType(), "Groenten Ja/Nee", "Grijs/Wit");
-            System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getTitle(), (o.getSandwich().isVegetables() ? "Ja" : "Nee"), (o.getSandwich().isTypeOfBread() ? "Grijs" : "Wit"));
-            System.out.printf("%1$-150s\n", "");
-            System.out.printf("%1$-150s\n", "");
-            System.out.printf("%1$-150s\n", "Opmerkingen :"+ (o.getOrderComments().equalsIgnoreCase("none") ? "": o.getOrderComments()));
-            System.out.printf("%1$-150s\n", "");
-
-        }
-
-
     }
 
     private Order parseOrder(String s) {

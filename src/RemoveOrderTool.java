@@ -1,16 +1,7 @@
 import controller.OrderSystem;
-import model.Course;
-import model.Order;
-import model.Person;
-import model.Sandwich;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RemoveOrderTool {
 
