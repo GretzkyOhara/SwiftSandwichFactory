@@ -88,7 +88,8 @@ public class SandWichOrderingTool {
                 Sandwich c2 = new Sandwich( cnt,t2,b1,false,sT);
                 sr.addSandwich(c2);
 
-                System.out.println(cnt.toString() + ". " + (bResLanguage ? t2 : t2_fr) + "  (" + (bResLanguage ? sT : sT_fr) + ")");
+                System.out.printf("%1$-5s%2$-120s%3$-30s\n", cnt.toString() + ".", (bResLanguage ? t2 : t2_fr), "(" + (bResLanguage ? sT : sT_fr) + ")");
+                //System.out.println(cnt.toString() + "." + (bResLanguage ? t2 : t2_fr) + "(" + (bResLanguage ? sT : sT_fr) + ")");
             }
         } catch (Exception e) {
             // Handle exceptions
