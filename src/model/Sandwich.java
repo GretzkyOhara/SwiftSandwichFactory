@@ -9,6 +9,7 @@ public class Sandwich {
     private boolean vegetables;
     private boolean typeOfBread;
     private String sandwichType;
+
     public Sandwich() {
 
 
