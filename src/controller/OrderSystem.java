@@ -5,6 +5,8 @@ import repo.FileOrderRepository;
 import repo.OrderRepository;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class OrderSystem {
@@ -16,6 +18,12 @@ public class OrderSystem {
 
     public void addOrder (Order order) {
         repo.addOrder(order);
+
+    }
+
+    public List<Order> getOrdersByPerson(String aPersonName){
+
+      return repo.getOrdersByPerson(aPersonName);
 
     }
 

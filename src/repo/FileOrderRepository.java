@@ -60,6 +60,12 @@ public class FileOrderRepository implements OrderRepository {
         }
     }
 
+
+
+
+
+
+
     @Override
     public void removeOrder(String aPersonName, String aSandWichName) throws IOException {
 
@@ -114,6 +120,15 @@ public class FileOrderRepository implements OrderRepository {
             System.out.println("currently no orders in database, nothing to be printed");
 
         }
+    }
+
+    @Override
+    public List<Order> getOrdersByPerson(String personName) {
+        List<Order > theResult = new ArrayList<Order>();
+
+        theResult = orderList.stream().filter (o -> o.getPerson().getName().equals(personName)).toList();
+
+        return theResult;
     }
 
     private Order parseOrder(String s) {
