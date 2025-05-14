@@ -19,10 +19,6 @@ public class RemoveOrderTool {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
-
 }
 
