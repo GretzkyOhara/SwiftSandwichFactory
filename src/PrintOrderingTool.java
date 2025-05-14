@@ -24,9 +24,6 @@ public class PrintOrderingTool {
         Sandwich sw1 = new Sandwich("kip curry", false, false,"Vis");
         Order order = new Order(p1, c1, sw1);
 
-
-        //orderSystem.removeOrder(order);
-
     }
 }
 
