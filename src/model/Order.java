@@ -9,14 +9,16 @@ public class Order {
     private Person person;
     private Course course;
     private Sandwich sandwich = new Sandwich ();
+    private String orderComments = "";
 
     public Order() {
     }
 
-    public Order(Person person, Course course, Sandwich sandwich) {
+     public Order(Person person, Course course, Sandwich sandwich, String orderComments) {
         this.person = person;
         this.course = course;
         this.sandwich = sandwich;
+        this.orderComments = orderComments;
     }
 
     public Course getCourse() {
@@ -43,6 +45,13 @@ public class Order {
         this.person = person;
     }
 
+    public String getOrderComments() {
+        return orderComments;
+    }
+
+    public void setOrderComments(String orderComments) {
+        this.orderComments = orderComments;
+    }
 
     @Override
     public String toString() {
@@ -50,6 +59,8 @@ public class Order {
                 "person=" + person +
                 ", course=" + course +
                 ", sandwich=" + sandwich +
+                ", orderComments='" + orderComments + '\'' +
                 '}';
     }
 }
+

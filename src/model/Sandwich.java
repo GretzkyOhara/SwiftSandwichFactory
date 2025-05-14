@@ -70,9 +70,11 @@ public class Sandwich {
     @Override
     public String toString() {
         return "Sandwich{" +
-                "title='" + title + '\'' +
+                "num=" + num +
+                ", title='" + title + '\'' +
                 ", vegetables=" + vegetables +
                 ", typeOfBread=" + typeOfBread +
+                ", sandwichType='" + sandwichType + '\'' +
                 '}';
     }
 }

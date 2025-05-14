@@ -75,11 +75,24 @@ public class FileOrderRepository implements OrderRepository {
     public void printOrder() throws IOException {
 
 
+        StringBuilder dashes_underscore = new StringBuilder("");
+        for (int i = 1; i <= 150; i++) {
+            dashes_underscore.append("-");
+        }
+
+        StringBuilder dashes_star = new StringBuilder("");
+        for (int i = 1; i <= 150; i++) {
+            dashes_star.append("*");
+        }
+
+
         System.out.printf("%1$-100s\n", "Broodjes (Pinky's)");
+        System.out.printf("%1$-100s\n", dashes_star.toString());
         System.out.printf("%1$-100s\n", "");
 
         for (Order o : orderList) {
 
+            System.out.printf("%1$-100s\n", dashes_underscore.toString());
             System.out.printf("%1$-150s\n", "Naam:" + o.getPerson().getName());
             System.out.printf("%1$-150s\n", "Training:" + o.getCourse().getTitle());
             System.out.printf("%1$-150s\n", "");
@@ -87,6 +100,10 @@ public class FileOrderRepository implements OrderRepository {
             System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getSandwichType(), "Groenten Ja/Nee", "Grijs/Wit");
             System.out.printf("%1$-100s%2$-25s%3$-25s\n", o.getSandwich().getTitle(), (o.getSandwich().isVegetables() ? "Ja" : "Nee"), (o.getSandwich().isTypeOfBread() ? "Grijs" : "Wit"));
             System.out.printf("%1$-150s\n", "");
+            System.out.printf("%1$-150s\n", "");
+            System.out.printf("%1$-150s\n", "Opmerkingen :"+ (o.getOrderComments().equalsIgnoreCase("none") ? "": o.getOrderComments()));
+            System.out.printf("%1$-150s\n", "");
+
         }
 
 
@@ -95,11 +112,12 @@ public class FileOrderRepository implements OrderRepository {
     private Order parseOrder(String s) {
 
         Order theResult = new Order();
-        String[] tokens = s.split(",");
+        String[] tokens = s.split(";");
 
         theResult.setCourse(new Course(tokens[0]));
         theResult.setPerson(new Person(tokens[1]));
         theResult.setSandwich(new Sandwich(tokens[2], Boolean.parseBoolean(tokens[3]), Boolean.parseBoolean(tokens[4]),tokens[5]));
+        theResult.setOrderComments(tokens[6]);
 
         return theResult;
     }
@@ -109,7 +127,7 @@ public class FileOrderRepository implements OrderRepository {
         Path path = Paths.get("C://temp//javacourses//orders.csv");
         try (
                 PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND))) {
-            writer.println(o.getCourse().getTitle() + "," + o.getPerson().getName() + "," + o.getSandwich().getTitle() + "," + o.getSandwich().isVegetables() + "," + o.getSandwich().isTypeOfBread() + ","+o.getSandwich().getSandwichType());
+            writer.println(o.getCourse().getTitle() + ";" + o.getPerson().getName() + ";" + o.getSandwich().getTitle() + ";" + o.getSandwich().isVegetables() + ";" + o.getSandwich().isTypeOfBread() + ";"+o.getSandwich().getSandwichType()+ ";"+o.getOrderComments());
         } catch (IOException e) {
             e.printStackTrace();
         }

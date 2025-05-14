@@ -140,7 +140,7 @@ public class SandWichOrderingTool {
                     Course c1 = new Course(aCourseName);
 
                     Sandwich sw1 = new Sandwich(nameSelected, extraVeggies, breadType,sType);
-                    Order order = new Order(p1, c1, sw1);
+                    Order order = new Order(p1, c1, sw1,orderComments);
 
                     OrderSystem os = new OrderSystem();
                     os.addOrder(order);
